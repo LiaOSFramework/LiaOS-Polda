@@ -34,12 +34,12 @@ else:
     menu = st.sidebar.radio(
         "Navigasi", 
         [
-            "Beranda", 
-            "Scan Narasi", 
-            "Riwayat Analisis", 
-            "Rekomendasi Respon", 
-            "Feed Narasi Viral", 
-            "Export/Kirim ke WA", 
+            "Beranda",
+            "Scan Narasi",
+            "Riwayat Analisis",
+            "Rekomendasi Respon",
+            "Feed Narasi Viral",
+            "Export/Kirim ke WA",
             "Pengaturan"
         ]
     )
