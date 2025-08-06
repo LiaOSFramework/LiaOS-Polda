@@ -1,8 +1,7 @@
 import streamlit as st
 
 def show():
-    st.header("Rekomendasi Respon")
-    st.write("💡 Rekomendasi ini dihasilkan otomatis oleh modul LiaOS.")
-    st.write("- Opsi A: Klarifikasi resmi di media")
-    st.write("- Opsi B: Edukasi publik lewat infografis")
-    st.write("- Opsi C: Koordinasi dengan instansi terkait")
+    st.markdown("## 💡 Rekomendasi Respon")
+    st.write("Hasil rekomendasi respon terhadap narasi publik.")
+    st.divider()
+    st.info("⚠️ Data belum tersedia. Gunakan fitur Scan Narasi untuk memulai.")
