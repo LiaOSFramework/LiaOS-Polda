@@ -1,6 +1,6 @@
 import streamlit as st
 from login import login
-from Pages import beranda, scan_narasi, riwayat_analisis, rekomendasi_respon, feed_narasi, ekspor_ke_wa, pengaturan
+from pages import beranda, scan_narasi, riwayat_analisis, rekomendasi_respon, feed_narasi, ekspor_ke_wa, pengaturan
 import os
 
 st.set_page_config(page_title="LiaOS – Polda", layout="wide")
