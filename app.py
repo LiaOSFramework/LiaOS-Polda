@@ -1,11 +1,12 @@
 import streamlit as st
 from fpdf import FPDF
 from datetime import datetime
-import openai
+from openai import OpenAI
 
 # ===== CONFIG =====
 st.set_page_config(page_title="LiaOS Polda", layout="wide", page_icon="🛡")
-openai.api_key = st.secrets.get("OPENAI_API_KEY")
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+MODEL_DEFAULT = st.secrets.get("OPENAI_MODEL", "gpt-4o-mini")
 
 # ===== CSS =====
 st.markdown("""
@@ -45,13 +46,15 @@ def analisis_liaos_ai(narasi):
     Narasi: {narasi}
     Berikan jawaban singkat untuk tiap layer.
     """
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "system", "content": "Kamu adalah analis narasi LiaOS Polda."},
-                  {"role": "user", "content": prompt}],
+    response = client.chat.completions.create(
+        model=MODEL_DEFAULT,
+        messages=[
+            {"role": "system", "content": "Kamu adalah analis narasi LiaOS Polda."},
+            {"role": "user", "content": prompt}
+        ],
         max_tokens=500
     )
-    hasil_text = response.choices[0].message["content"].strip()
+    hasil_text = response.choices[0].message.content.strip()
     hasil_dict = {}
     for line in hasil_text.split("\n"):
         if "-" in line:
@@ -133,3 +136,4 @@ elif menu == "Export PDF":
 elif menu == "Pengaturan":
     st.title("⚙️ Pengaturan")
     st.write("Pastikan API Key OpenAI sudah diisi di menu Secrets Streamlit untuk mengaktifkan analisis AI.")
+    st.write("Model default:", MODEL_DEFAULT)
